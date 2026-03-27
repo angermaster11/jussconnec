@@ -1,0 +1,16 @@
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+const PORT = 3000;
+
+app.get("/",(req,res)=>{
+    res.json({
+        "msg" : "Hello Cutie"
+    })
+})
+
+app.listen(PORT, ()=>{
+    console.log(`Server is runnning on port : ${PORT}`)
+})

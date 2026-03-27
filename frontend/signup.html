@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JUssconnec — Create Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<style>
+[data-theme="dark"] {
+  --bg:#090b13; --glass-bg:rgba(255,255,255,0.07); --glass-border:rgba(255,255,255,0.13);
+  --glass-shadow:0 8px 48px rgba(0,0,0,0.38); --glass-inner:inset 0 1px 0 rgba(255,255,255,0.10);
+  --nav-bg:rgba(9,11,19,0.65); --text:#f0ede8; --text-muted:rgba(240,237,232,0.52);
+  --text-faint:rgba(240,237,232,0.24); --divider:rgba(255,255,255,0.07);
+  --input-bg:rgba(255,255,255,0.06); --input-focus:rgba(255,255,255,0.10);
+  --orb-op:0.30;
+}
+[data-theme="light"] {
+  --bg:#f4f1ec; --glass-bg:rgba(255,255,255,0.82); --glass-border:rgba(154,122,69,0.30);
+  --glass-shadow:0 8px 40px rgba(100,80,40,0.14); --glass-inner:inset 0 1px 0 rgba(255,255,255,0.95);
+  --nav-bg:rgba(244,241,236,0.88); --text:#1a1710; --text-muted:rgba(26,23,16,0.70);
+  --text-faint:rgba(26,23,16,0.50); --divider:rgba(154,122,69,0.22);
+  --input-bg:rgba(255,255,255,0.90); --input-focus:rgba(255,255,255,1.0);
+  --orb-op:0.12;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .4s,color .4s;}
+
+/* BG */
+.bg-canvas{position:fixed;inset:0;z-index:0;transition:background .4s;}
+[data-theme="dark"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.14) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.11) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.07) 0%,transparent 65%),linear-gradient(160deg,#0d1020 0%,#090b13 45%,#0b0e1a 100%);}
+[data-theme="light"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.20) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.14) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.09) 0%,transparent 65%),linear-gradient(160deg,#ede9e2 0%,#f4f1ec 45%,#e8e4dc 100%);}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--orb-op);animation:drift 14s ease-in-out infinite alternate;}
+.orb1{width:500px;height:500px;top:-120px;left:-100px;background:radial-gradient(circle,#c5a97a,transparent 70%);animation-delay:0s;}
+.orb2{width:380px;height:380px;top:50%;right:-80px;background:radial-gradient(circle,#7ab8c5,transparent 70%);animation-delay:-5s;}
+.orb3{width:280px;height:280px;bottom:-60px;left:30%;background:radial-gradient(circle,#a78fc5,transparent 70%);animation-delay:-9s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}50%{transform:translate(24px,16px) scale(1.04);}100%{transform:translate(-16px,30px) scale(.96);}}
+
+/* GLASS */
+.glass{background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);box-shadow:var(--glass-shadow),var(--glass-inner);transition:background .35s,border-color .35s;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 52px;height:72px;background:var(--nav-bg);border-bottom:1px solid var(--glass-border);backdrop-filter:blur(32px) saturate(1.6);-webkit-backdrop-filter:blur(32px) saturate(1.6);transition:background .4s,border-color .4s;animation:slideDown .7s cubic-bezier(.22,.68,0,1.2) both;}
+@keyframes slideDown{from{transform:translateY(-100%);opacity:0;}to{transform:none;opacity:1;}}
+.logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:2px;color:var(--text);display:flex;align-items:center;gap:10px;text-decoration:none;position:relative;}
+.logo-slime{position:absolute;width:200px;height:140px;pointer-events:none;z-index:0;top:50%;left:0;transform:translate(-30%,-55%);mix-blend-mode:screen;filter:blur(18px) contrast(1.2);border-radius:55% 45% 65% 35%/50% 60% 40% 50%;background:radial-gradient(ellipse 60% 50% at 45% 55%,rgba(197,169,122,.5) 0%,transparent 65%),radial-gradient(ellipse 40% 60% at 65% 35%,rgba(212,185,138,.3) 0%,transparent 60%);animation:logoSlimeMorph 5s ease-in-out infinite;}
+@keyframes logoSlimeMorph{0%,100%{border-radius:55% 45% 65% 35%/50% 60% 40% 50%;}25%{border-radius:40% 60% 50% 50%/65% 35% 65% 35%;}50%{border-radius:65% 35% 45% 55%/40% 60% 40% 60%;}75%{border-radius:45% 55% 60% 40%/55% 45% 55% 45%;}}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.theme-toggle{width:56px;height:28px;border-radius:50px;border:1px solid var(--glass-border);background:var(--input-bg);cursor:pointer;position:relative;transition:all .35s;display:flex;align-items:center;padding:3px;}
+.toggle-thumb{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#c5a97a,#d4b98a);box-shadow:0 2px 8px rgba(197,169,122,.5);transition:transform .35s cubic-bezier(.22,.68,0,1.2);display:flex;align-items:center;justify-content:center;}
+[data-theme="light"] .toggle-thumb{transform:translateX(28px);}
+.btn-ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text);padding:8px 20px;border-radius:50px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .25s;}
+.btn-ghost:hover{border-color:#9a7a45;color:#9a7a45;}
+
+/* PAGE LAYOUT */
+.page{position:relative;z-index:1;min-height:100vh;padding-top:72px;display:flex;align-items:center;justify-content:center;padding-bottom:40px;}
+.signup-wrap{width:100%;max-width:520px;margin:40px 24px;animation:fadeUp .8s .15s cubic-bezier(.22,.68,0,1.2) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+
+/* MASCOT */
+.mascot-wrap{display:none;}
+
+/* CARD */
+.card{border-radius:28px;padding:40px 40px 36px;}
+
+/* Header */
+.card-header{text-align:center;margin-bottom:32px;}
+.card-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#9a7a45;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.card-eyebrow::before,.card-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:linear-gradient(90deg,transparent,#9a7a45);}
+.card-eyebrow::after{background:linear-gradient(90deg,#9a7a45,transparent);}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1.1;margin-bottom:6px;color:var(--text);}
+.card-title em{font-style:italic;color:#9a7a45;}
+.card-sub{font-size:13px;color:var(--text-muted);line-height:1.6;}
+
+/* FORM */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0;}
+.field{margin-bottom:18px;position:relative;}
+.field-label{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px;display:flex;align-items:center;gap:6px;transition:color .25s;}
+.field-label svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.7;}
+.field.focused .field-label{color:#9a7a45;}
+.field.focused .field-label svg{opacity:1;}
+
+.input-wrap{position:relative;}
+input[type="text"],input[type="email"],input[type="password"]{
+  width:100%;padding:13px 18px;border-radius:14px;
+  background:var(--input-bg);border:1px solid var(--glass-border);
+  color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;
+  outline:none;transition:all .3s;
+  backdrop-filter:blur(10px);
+}
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus{
+  background:var(--input-focus);
+  border-color:rgba(197,169,122,.50);
+  box-shadow:0 0 0 3px rgba(197,169,122,.10), 0 4px 20px rgba(197,169,122,.08);
+}
+input::placeholder{color:var(--text-faint);}
+
+/* password toggle */
+.pw-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);transition:color .2s;padding:4px;display:flex;align-items:center;justify-content:center;}
+.pw-toggle:hover{color:#9a7a45;}
+.pw-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+input[type="password"]{padding-right:48px;}
+
+/* strength bar */
+.strength-wrap{margin-top:8px;display:flex;gap:4px;height:3px;}
+.strength-bar{flex:1;border-radius:2px;background:var(--divider);transition:background .35s;}
+.strength-bar.weak{background:#f87171;}
+.strength-bar.ok{background:#fbbf24;}
+.strength-bar.strong{background:#4ade80;}
+.strength-label{font-size:10px;color:var(--text-faint);margin-top:5px;transition:color .3s;text-align:right;letter-spacing:.3px;}
+
+/* match indicator */
+.match-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:0;transition:opacity .3s;}
+.match-icon.show{opacity:1;}
+
+/* submit */
+.btn-submit{width:100%;padding:15px;border-radius:14px;background:linear-gradient(135deg,#c5a97a,#d4b98a);border:none;color:#090b13;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .3s;box-shadow:0 6px 28px rgba(197,169,122,.35);margin-top:6px;letter-spacing:.3px;position:relative;overflow:hidden;}
+.btn-submit::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(197,169,122,.55);}
+.btn-submit:hover::before{opacity:1;}
+.btn-submit:active{transform:translateY(0);}
+
+/* divider */
+.or-divider{display:flex;align-items:center;gap:14px;margin:22px 0 18px;color:var(--text-faint);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--divider);}
+
+/* login link */
+.login-link{text-align:center;font-size:13px;color:var(--text-muted);margin-top:22px;}
+.login-link a{color:#9a7a45;text-decoration:none;font-weight:500;border-bottom:1px solid rgba(154,122,69,.35);padding-bottom:1px;transition:all .25s;}
+.login-link a:hover{border-bottom-color:#9a7a45;}
+
+/* terms */
+.terms{font-size:11px;color:var(--text-faint);text-align:center;margin-top:16px;line-height:1.6;}
+.terms a{color:var(--text-muted);text-decoration:none;border-bottom:1px solid var(--divider);transition:color .2s;}
+.terms a:hover{color:#9a7a45;}
+
+/* validation tick */
+.field-hint{font-size:10.5px;margin-top:6px;color:var(--text-faint);display:flex;align-items:center;gap:5px;transition:color .25s;}
+.field-hint.valid{color:#4ade80;}
+.field-hint svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+/* paw prints - removed */
+
+/* FAB THEME */
+.fab-theme{position:fixed;bottom:28px;right:28px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#c5a97a,#d4b98a);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(197,169,122,.45),0 2px 8px rgba(0,0,0,.3);z-index:999;transition:transform .3s cubic-bezier(.22,.68,0,1.2),box-shadow .3s);animation:fabPop .5s .8s cubic-bezier(.22,.68,0,1.2) both;}
+.fab-theme:hover{transform:scale(1.12);box-shadow:0 10px 36px rgba(197,169,122,.6);}
+.fab-theme:active{transform:scale(0.95);}
+@keyframes fabPop{from{opacity:0;transform:scale(.5);}to{opacity:1;transform:scale(1);}}
+
+/* MOBILE NAV */
+@media(max-width:600px){
+  nav{padding:0 20px;}
+  .theme-toggle{display:none;}
+  .btn-ghost{font-size:12px;padding:7px 14px;}
+  .card{padding:28px 20px 24px;}
+  .form-row{grid-template-columns:1fr;}
+}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:rgba(197,169,122,.28);border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="bg-canvas"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-slime"></div>
+    <img src="images/logo.png" alt="JUssconnec" id="logoImg" style="height:48px;width:auto;display:block;position:relative;z-index:1;"/>
+  </a>
+  <div class="nav-right">
+    <button class="btn-ghost" onclick="window.location='index.html'">← Back home</button>
+  </div>
+</nav>
+
+<!-- Floating Theme Toggle -->
+<button class="fab-theme" id="fabTheme" title="Toggle theme">
+  <svg id="fabSun" width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="4" fill="#090b13"/>
+    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#090b13" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <svg id="fabMoon" width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:none">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" fill="#090b13"/>
+  </svg>
+</button>
+
+<div class="page">
+  <div class="signup-wrap">
+
+    <!-- CARD -->
+    <div class="card glass">
+      <div class="card-header">
+        <div class="card-eyebrow">New Member</div>
+        <h1 class="card-title">Create your <em>Account</em></h1>
+        <p class="card-sub">Join the professional universe. Takes less than a minute.</p>
+      </div>
+
+      <form id="signupForm" novalidate>
+        <!-- Name row -->
+        <div class="form-row">
+          <div class="field" id="field-firstname">
+            <div class="field-label">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              First Name
+            </div>
+            <div class="input-wrap">
+              <input type="text" id="firstname" placeholder="e.g. Anika" autocomplete="given-name"/>
+            </div>
+          </div>
+          <div class="field" id="field-lastname">
+            <div class="field-label">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Last Name
+            </div>
+            <div class="input-wrap">
+              <input type="text" id="lastname" placeholder="e.g. Sharma" autocomplete="family-name"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field" id="field-email">
+          <div class="field-label">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Address
+          </div>
+          <div class="input-wrap">
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email"/>
+          </div>
+          <div class="field-hint" id="email-hint" style="display:none">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Looks good!
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field" id="field-password">
+          <div class="field-label">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Password
+          </div>
+          <div class="input-wrap">
+            <input type="password" id="password" placeholder="Min. 8 characters" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" id="pw-toggle1" aria-label="Toggle password visibility">
+              <svg id="eye1-open" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="eye1-closed" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+          <div class="strength-wrap" id="strength-bars">
+            <div class="strength-bar" id="sb1"></div>
+            <div class="strength-bar" id="sb2"></div>
+            <div class="strength-bar" id="sb3"></div>
+            <div class="strength-bar" id="sb4"></div>
+          </div>
+          <div class="strength-label" id="strength-label"></div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="field" id="field-confirm">
+          <div class="field-label">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Confirm Password
+          </div>
+          <div class="input-wrap">
+            <input type="password" id="confirm" placeholder="Repeat your password" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" id="pw-toggle2" aria-label="Toggle confirm visibility">
+              <svg id="eye2-open" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg id="eye2-closed" viewBox="0 0 24 24" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            <span class="match-icon" id="match-icon"></span>
+          </div>
+          <div class="field-hint" id="confirm-hint" style="display:none">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Passwords match!
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Create My Account &nbsp;→
+        </button>
+      </form>
+
+      <div class="login-link">
+        Already have an account? <a href="signin.html">Sign in here</a>
+      </div>
+      <div class="terms">
+        By creating an account you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Theme toggle ──────────────────────────────────────────────
+const html = document.documentElement;
+const logoImg = document.getElementById('logoImg');
+const fabSun = document.getElementById('fabSun');
+const fabMoon = document.getElementById('fabMoon');
+function applyTheme(dark) {
+  html.dataset.theme = dark ? 'light' : 'dark';
+  logoImg.src = dark ? 'images/logobrightmode.png' : 'images/logo.png';
+  fabSun.style.display  = dark ? 'none'  : 'block';
+  fabMoon.style.display = dark ? 'block' : 'none';
+}
+document.getElementById('fabTheme').addEventListener('click', () => applyTheme(html.dataset.theme === 'dark'));
+
+// ── Field focus highlight ─────────────────────────────────────
+function focusField(id) {
+  document.querySelectorAll('.field').forEach(f => f.classList.remove('focused'));
+  const field = document.getElementById('field-' + id);
+  if (field) field.classList.add('focused');
+}
+const inputs = ['firstname','lastname','email','password','confirm'];
+inputs.forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('focus', () => focusField(id));
+  el.addEventListener('blur',  () => document.querySelectorAll('.field').forEach(f => f.classList.remove('focused')));
+});
+
+// ── Email validation ──────────────────────────────────────────
+document.getElementById('email').addEventListener('input', function() {
+  const hint = document.getElementById('email-hint');
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+  hint.style.display = this.value.length > 3 ? 'flex' : 'none';
+  hint.className = 'field-hint' + (valid ? ' valid' : '');
+  hint.innerHTML = valid
+    ? '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Looks good!'
+    : '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Enter a valid email';
+});
+
+// ── Password strength ─────────────────────────────────────────
+document.getElementById('password').addEventListener('input', function() {
+  evaluateStrength(this.value);
+  checkMatch();
+});
+document.getElementById('confirm').addEventListener('input', checkMatch);
+
+function evaluateStrength(pw) {
+  const bars = ['sb1','sb2','sb3','sb4'].map(id => document.getElementById(id));
+  const label = document.getElementById('strength-label');
+  bars.forEach(b => { b.className = 'strength-bar'; });
+  if (!pw) { label.textContent = ''; return; }
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  const classes = ['weak','weak','ok','strong'];
+  const labels  = ['Too short','Weak','Good','Strong 💪'];
+  for (let i=0;i<score;i++) bars[i].classList.add(classes[score-1]);
+  label.textContent = labels[score-1] || '';
+  label.style.color = score===1?'#f87171':score===2?'#fbbf24':score===3?'#60a5fa':'#4ade80';
+}
+
+// ── Confirm match ─────────────────────────────────────────────
+function checkMatch() {
+  const pw  = document.getElementById('password').value;
+  const cf  = document.getElementById('confirm').value;
+  const icon = document.getElementById('match-icon');
+  const hint = document.getElementById('confirm-hint');
+  if (!cf) { icon.classList.remove('show'); hint.style.display='none'; return; }
+  const match = pw === cf && pw.length > 0;
+  icon.textContent = match ? '✓' : '✗';
+  icon.style.color = match ? '#4ade80' : '#f87171';
+  icon.classList.add('show');
+  hint.style.display = match ? 'flex' : 'none';
+  hint.className = 'field-hint' + (match ? ' valid' : '');
+}
+
+// ── Password visibility toggles ───────────────────────────────
+function setupPwToggle(btnId, inputId, openId, closedId) {
+  let visible = false;
+  document.getElementById(btnId).addEventListener('click', () => {
+    visible = !visible;
+    document.getElementById(inputId).type = visible ? 'text' : 'password';
+    document.getElementById(openId).style.display   = visible ? 'none'  : 'block';
+    document.getElementById(closedId).style.display = visible ? 'block' : 'none';
+  });
+}
+setupPwToggle('pw-toggle1','password','eye1-open','eye1-closed');
+setupPwToggle('pw-toggle2','confirm','eye2-open','eye2-closed');
+
+// ── Submit ────────────────────────────────────────────────────
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '✓ Welcome to JUssconnec!';
+  btn.style.background = 'linear-gradient(135deg,#4ade80,#22c55e)';
+  btn.disabled = true;
+});
+</script>
+</body>
+</html>
