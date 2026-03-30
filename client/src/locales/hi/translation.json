@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "होम",
+    "network": "मेरा नेटवर्क",
+    "messages": "संदेश",
+    "notifications": "सूचनाएं",
+    "search": "खोजें",
+    "settings": "सेटिंग्स",
+    "profile": "प्रोफ़ाइल",
+    "logout": "लॉग आउट"
+  },
+  "landing": {
+    "hero": "जहां पेशेवर JussConnecc करते हैं",
+    "subtitle": "अपना पेशेवर नेटवर्क बनाएं, अंतर्दृष्टि साझा करें, और महत्वपूर्ण अवसर खोजें।",
+    "cta_signup": "शुरू करें — यह मुफ़्त है",
+    "cta_login": "साइन इन करें"
+  },
+  "auth": {
+    "login_title": "वापसी पर स्वागत है",
+    "signup_title": "JussConnecc से जुड़ें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "sign_in": "साइन इन",
+    "sign_up": "साइन अप"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "error": "कुछ गलत हो गया",
+    "save": "सहेजें",
+    "cancel": "रद्द करें"
+  }
+}

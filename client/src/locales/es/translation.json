@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "network": "Mi Red",
+    "messages": "Mensajes",
+    "notifications": "Notificaciones",
+    "search": "Buscar",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "logout": "Cerrar sesión"
+  },
+  "landing": {
+    "hero": "Donde los Profesionales se JussConnecc",
+    "subtitle": "Construye tu red profesional, comparte conocimientos y descubre oportunidades.",
+    "cta_signup": "Comienza — Es Gratis",
+    "cta_login": "Iniciar Sesión"
+  },
+  "auth": {
+    "login_title": "Bienvenido de Nuevo",
+    "signup_title": "Únete a JussConnecc",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "sign_in": "Iniciar Sesión",
+    "sign_up": "Registrarse"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "save": "Guardar",
+    "cancel": "Cancelar"
+  }
+}

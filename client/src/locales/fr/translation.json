@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "network": "Mon Réseau",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "search": "Rechercher",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "logout": "Se déconnecter"
+  },
+  "landing": {
+    "hero": "Où les Professionnels se JussConnecc",
+    "subtitle": "Construisez votre réseau professionnel, partagez vos connaissances et découvrez des opportunités.",
+    "cta_signup": "Commencer — C'est Gratuit",
+    "cta_login": "Se Connecter"
+  },
+  "auth": {
+    "login_title": "Bon Retour",
+    "signup_title": "Rejoignez JussConnecc",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "sign_in": "Se Connecter",
+    "sign_up": "S'inscrire"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Quelque chose s'est mal passé",
+    "save": "Sauvegarder",
+    "cancel": "Annuler"
+  }
+}
