@@ -24,12 +24,33 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .4s,color .4s;}
+html{background:var(--bg);}
+body{font-family:'DM Sans',sans-serif;background:transparent;color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .4s,color .4s;}
+
+/* VIDEO BG */
+.video-bg{position:fixed;inset:0;z-index:0;}
+.video-bg video{width:100%;height:100%;object-fit:cover;filter:blur(20px) brightness(0.33) saturate(0.65);transform:scale(1.12);}
+/* golden edge shimmer */
+.video-bg::before{
+  content:'';
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 90% 20% at 50% 0%,   rgba(197,169,122,0.30) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 20% at 50% 100%, rgba(197,169,122,0.24) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 90% at 0%   50%, rgba(212,185,138,0.22) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 90% at 100% 50%, rgba(212,185,138,0.22) 0%, transparent 70%);
+  animation:edgeShimmer 6s ease-in-out infinite alternate;
+}
+/* dark centre tint */
+.video-bg::after{content:'';position:absolute;inset:0;background:rgba(9,11,19,0.30);pointer-events:none;}
+@keyframes edgeShimmer{0%{opacity:0.7;}100%{opacity:1.0;}}
+[data-theme="light"] .video-bg video{filter:blur(20px) brightness(0.52) saturate(0.6);}
+[data-theme="light"] .video-bg::after{background:rgba(244,241,236,0.28);}
 
 /* BG */
 .bg-canvas{position:fixed;inset:0;z-index:0;transition:background .4s;}
-[data-theme="dark"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.14) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.11) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.07) 0%,transparent 65%),linear-gradient(160deg,#0d1020 0%,#090b13 45%,#0b0e1a 100%);}
-[data-theme="light"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.20) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.14) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.09) 0%,transparent 65%),linear-gradient(160deg,#ede9e2 0%,#f4f1ec 45%,#e8e4dc 100%);}
+[data-theme="dark"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.14) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.11) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.07) 0%,transparent 65%);}
+[data-theme="light"] .bg-canvas{background:radial-gradient(ellipse 70% 60% at 15% 10%,rgba(197,169,122,.20) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 85% 80%,rgba(122,184,197,.14) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 50% 50%,rgba(167,143,197,.09) 0%,transparent 65%);}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:var(--orb-op);animation:drift 14s ease-in-out infinite alternate;}
 .orb1{width:500px;height:500px;top:-120px;left:-100px;background:radial-gradient(circle,#c5a97a,transparent 70%);animation-delay:0s;}
 .orb2{width:380px;height:380px;top:50%;right:-80px;background:radial-gradient(circle,#7ab8c5,transparent 70%);animation-delay:-5s;}
@@ -150,6 +171,7 @@ input[type="password"]{padding-right:48px;}
 </style>
 </head>
 <body>
+<div class="video-bg"><video autoplay muted loop playsinline src="../client/public/Signin1.mp4"></video></div>
 <div class="bg-canvas"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 <div class="wave-canvas"><div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div></div>
 

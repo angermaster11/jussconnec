@@ -42,6 +42,10 @@
     @apply bg-gradient-primary bg-clip-text text-transparent;
   }
 
+  .gradient-gold-text {
+    @apply bg-gradient-gold bg-clip-text text-transparent;
+  }
+
   .btn-primary {
     @apply bg-primary hover:bg-primary-600 text-navy-900 font-semibold px-6 py-2.5 rounded-xl
            transition-all duration-200 active:scale-95;

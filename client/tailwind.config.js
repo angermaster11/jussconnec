@@ -53,9 +53,12 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         heading: ['Sora', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
       },
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #00C6C2 0%, #7B5EA7 100%)',
+        'gradient-gold': 'linear-gradient(135deg, #D4AF37 0%, #F5D76E 50%, #C9A227 100%)',
+        'gradient-luxury': 'linear-gradient(135deg, #D4AF37 0%, #7B5EA7 50%, #00C6C2 100%)',
         'gradient-dark': 'linear-gradient(135deg, #0A0F1E 0%, #1A1F35 100%)',
         'glass': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
       },
